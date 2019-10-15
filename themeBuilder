@@ -1,0 +1,85 @@
+#!/usr/bin/env python3
+
+###
+# Imports libraries needed
+##
+import subprocess as sp
+import json
+
+##
+# CSS Comments function
+##
+def create_css_comments(themeDict):
+    comment = ""
+
+    comment = comment + "/**\n"
+    comment = comment + "Theme Name: " + themeDict["name"] + "\n"
+    comment = comment + "Author: " + themeDict["author"] + "\n"
+    comment = comment + "Author URI: " + themeDict["uri"] + "\n"
+    comment = comment + "Description: " + themeDict["description"] + "\n"
+    comment = comment + "Version: " + themeDict["version"] + "\n"
+    comment = comment + "License: " + themeDict["license"] + "\n"
+    comment = comment + "License URI: " + themeDict["license_uri] + "\n"
+    comment = comment + "*/\n";
+    
+    return comment
+
+##
+# PHP Comments function
+##
+def create_php_comments(themeDict, file):
+    comment = "<?php\n"
+
+    comment = comment + "/**\n"
+    comment = comment + "* @name " + file + "\n"
+    comment = comment + "* @author " + themeDict["author"] + " - " + themeDict["uri"] + "\n"
+    comment = comment + "* @version " + themeDict["version"] + "\n"
+    comment = comment + "* @license " + themeDict["license"] + " - " + themeDict["license_uri] + "\n"
+    comment = comment + "*/\n";
+    
+    return comment
+##
+# Reads theme.json
+##
+with open('theme.json', 'r') as f:
+    json_text = f.read()
+
+themeDict = json.loads(json_text)
+
+##
+# Creates theme directory
+##
+themeFolder = wordpress/wp-content/themes/" + themeDict["folder"]
+shellCmd = "mkdir " + themeFolder
+sp.run(shellCmd, shell=True)
+
+files = [
+    {"name": "style", "type": "css"},
+    {"name": "index", "type": "php"},
+    {"name": "header", "type": "php"},
+    {"name": "footer", "type": "php"},
+    {"name": "page", "type": "php"},
+    {"name": "single", "type": "php"},
+    {"name": "sidebar", "type": "php"},
+    {"name": "search", "type": "php"},
+    {"name": "404", "type": "php"},
+    {"name": "image", "type": "php"},
+    {"name": "archive", "type": "php"},
+    {"name": "functions", "type": "php"}
+]
+
+##
+# Loop over files to create scafolding
+##
+for file in files:
+    if file["type"] == "css":
+        shellCmd = "echo " + create_css_comments(themeDict) + " >> " + themeFolder + "/" + file["name"] + "." + file["type"]
+        sp.run(shellCmd, shell=True)
+    else:
+        shellCmd = "echo " + create_php_comments(themeDict, file["name"]) + " >> " + themeFolder + "/" + file["name"] + "." + file["type"]
+        sp.run(shellCmd, shell=True)
+       
+###
+# End of scafolding
+###
+print("Theme scaffolding done... See : " + themeFolder)

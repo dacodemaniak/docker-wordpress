@@ -1,0 +1,10 @@
+{
+    "folder": "bureau_estel",
+    "name": "Le Bureau d'Estel",
+    "author": "IDea Factory",
+    "uri": "https://www.ideafactory.fr",
+    "description": "Le Bureau d'Estel",
+    "version": "1.0.0",
+    "license": "GNU General Public License v3 or later",
+    "license_uri": "http://www.gnu.org/licenses/gpl-3.0.html"
+}

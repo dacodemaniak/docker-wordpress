@@ -1,0 +1,7 @@
+!wordpress
+wordpress/*.php
+wordpress/wp-includes/
+wordpress/wp-admin/
+wordpress/wp-content/themes/twenty*
+!wordpress/wp-content/themes/bureau_estel
+wordpress/wp-content/themes/bureau_estel/node_modules/
