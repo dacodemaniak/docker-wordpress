@@ -8,5 +8,5 @@
 if ( is_active_sidebar( "sidebar" ) ) {
     echo "<aside id=\"primary-sidebar\" class=\"primary-sidebar widget-area\" role=\"complementary\">";
     dynamic_sidebar( "sidebar" );
-    echo "</aside>"
+    echo "</aside>";
 }

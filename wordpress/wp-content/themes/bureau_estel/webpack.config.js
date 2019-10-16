@@ -19,12 +19,7 @@ module.exports = {
     module: {
         rules: [{
                 test: /\.js$/,
-                loader: 'babel-loader',
-                options: {
-                    presets: [
-                        ['@babel/preset-env']
-                    ]
-                }
+                loader: 'babel-loader'
             },
             {
                 test: /\.(sa|sc|c)ss$/,
@@ -43,7 +38,8 @@ module.exports = {
                     {
                         loader: "sass-loader", // compiles Sass to CSS
                         options: {
-                            implementation: require("sass")
+                            implementation: require("sass"),
+                            sourceMap: true
                         }
                     }
                 ]
@@ -55,12 +51,6 @@ module.exports = {
             }
         ]
     },
-    plugins: [
-
-        new MiniCssExtractPlugin({
-            filename: "custom.css"
-        })
-    ],
     resolve: {
         extensions: [
             '.ts',
@@ -68,5 +58,10 @@ module.exports = {
             '.tsx'
         ]
     },
-    devtool: 'source-map'
+    devtool: 'source-map',
+    plugins: [
+        new MiniCssExtractPlugin({
+            filename: "./../css/custom.css"
+        })
+    ],
 };

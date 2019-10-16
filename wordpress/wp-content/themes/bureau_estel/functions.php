@@ -6,7 +6,8 @@
 * @license GNU General Public License v3 or later - http://www.gnu.org/licenses/gpl-3.0.html
 */
 
-require_once(__DIR__ . "/classes/CSS/CSS.php");
+require_once(__DIR__ . "/classes/Assets/CSS/CSS.php");
+require_once(__DIR__ . "/classes/Assets/JS/JS.php");
 
 function add_normalize_CSS() {
     wp_enqueue_style( "custom", "/wp-content/themes/bureau_estel/assets/css/custom.css");
@@ -24,9 +25,9 @@ function add_widget_Support() {
     ) );
 }
 // Hook the widget initiation and run our function
-add_action( 'widgets_init', 'add_Widget_Support' );
+add_action( 'widgets_inistylet', 'add_Widget_Support' );
 
-// Register a new navigation menu
+// Register a new navigastyletion menu
 function add_Main_Nav() {
     register_nav_menu('header-menu',__( 'Header Menu' ));
 }
@@ -34,3 +35,4 @@ function add_Main_Nav() {
 add_action( 'init', 'add_Main_Nav' );
 
 add_action("wp_enqueue_scripts", "CSS::enqueue");
+add_action("wp_enqueue_scripts", "JS::enqueue");
