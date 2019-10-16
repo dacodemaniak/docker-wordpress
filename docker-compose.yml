@@ -39,21 +39,10 @@ services:
       - "80:80"
     volumes:
       - ./nginx-conf:/etc/nginx/conf.d
-      - certbot-etc:/etc/letsencrypt
       - ./wordpress:/var/www/html
     networks:
       - app-network
-  certbot:
-    depends_on:
-      - webserver
-    image: certbot/certbot
-    container_name: certbot
-    volumes:
-      - certbot-etc:/etc/letsencrypt
-      - wordpress:/var/www/html
-    command: certonly --webroot --webroot-path=/var/www/html --email jla.webprojet@gmail.com --agree-tos --no-eff-email --staging -d mywp.wrk -d www.mywp.wrk
 volumes:
-  certbot-etc:
   wordpress:
   dbdata:
 
