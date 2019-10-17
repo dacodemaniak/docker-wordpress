@@ -61,7 +61,8 @@ module.exports = {
     devtool: 'source-map',
     plugins: [
         new MiniCssExtractPlugin({
-            filename: "./../css/custom.css"
+            filename: "./../css/custom.css",
+            chunkFilename: "./../css/[id].css"
         })
     ],
 };

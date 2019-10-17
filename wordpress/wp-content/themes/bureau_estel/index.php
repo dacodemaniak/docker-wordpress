@@ -7,21 +7,24 @@
 */
 ?>
 <?php get_header(); ?>
-<main class="wrap">
+<main class="row">
   <section class="content-area content-thin">
-<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-      <article class="article-loop">
+  <?php if ( have_posts() ) {
+     while ( have_posts() ) : the_post(); 
+      var_dump(the_post());
+     ?>
+      <article class="col-12" id="<?php  ?>">
         <header>
-          <h2><a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
-          By: <?php the_author(); ?>
+          <h2><?php the_title(); ?></h2>
         </header>
-        <?php the_excerpt(); ?>
+        <?php the_content(); ?>
       </article>
-<?php endwhile; else : ?>
+  <?php endwhile; } else { ?>
       <article>
         <p>Sorry, no posts were found!</p>
       </article>
-<?php endif; ?>
+  <?php } ?>
+
   </section><?php get_sidebar(); ?>
 </main>
 <?php get_footer(); ?>

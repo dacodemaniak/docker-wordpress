@@ -8,10 +8,7 @@
 
 require_once(__DIR__ . "/classes/Assets/CSS/CSS.php");
 require_once(__DIR__ . "/classes/Assets/JS/JS.php");
-
-function add_normalize_CSS() {
-    wp_enqueue_style( "custom", "/wp-content/themes/bureau_estel/assets/css/custom.css");
-}
+require_once(__DIR__ . "/classes/Assets/Favicon/Favicon.php");
 
 // Register a new sidebar simply named 'sidebar'
 function add_widget_Support() {
@@ -24,15 +21,25 @@ function add_widget_Support() {
                     'after_title'   => '</h2>',
     ) );
 }
+
 // Hook the widget initiation and run our function
 add_action( 'widgets_inistylet', 'add_Widget_Support' );
 
 // Register a new navigastyletion menu
-function add_Main_Nav() {
-    register_nav_menu('header-menu',__( 'Header Menu' ));
+function registerCustomNavMenus() {
+    register_nav_menus(
+        [
+            "sticky-top-menu" => "sticky-top-menu"
+        ]
+    );
+    //var_dump(get_registered_nav_menus());
 }
+
 // Hook to the init action hook, run our navigation menu function
-add_action( 'init', 'add_Main_Nav' );
+add_action( "init", "registerCustomNavMenus" );
+
+
 
 add_action("wp_enqueue_scripts", "CSS::enqueue");
 add_action("wp_enqueue_scripts", "JS::enqueue");
+add_action("wp_head", "Favicon::enqueue");

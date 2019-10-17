@@ -4,4 +4,20 @@
 * @version 1.0.0
 **/
 
-@import "./../node_modules/bootstrap/scss/bootstrap.scss";
+@import "./theme.scss";
+body {
+    font-family: roboto, sans-serif;
+    color: $default_font_color;
+}
+
+header {
+    &.row {
+        h1 {
+            line-height: 3em;
+            vertical-align: middle;
+            padding-left: 3em;
+            font-size: 1.375em;
+            font-weight: bold;
+        }
+    }
+}
