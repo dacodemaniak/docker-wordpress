@@ -9674,4 +9674,33 @@ header.row h1 {
   font-weight: bold;
 }
 
+article#le-bureau-destel {
+  padding: 3em;
+  text-align: center;
+  background-color: #77bec6;
+  color: white;
+}
+article#le-bureau-destel header h2 {
+  font-size: 2em;
+  font-weight: bold;
+  padding: 3em;
+}
+article#le-bureau-destel ul {
+  list-style-type: none;
+}
+article#les-services {
+  padding: 3em;
+  text-align: center;
+  background-color: #e7e7e7;
+  color: #181818;
+}
+article#les-services header h2 {
+  font-size: 2em;
+  font-weight: bold;
+  padding: 3em;
+}
+article#les-services ul {
+  list-style-type: none;
+}
+
 /*# sourceMappingURL=custom.css.map*/

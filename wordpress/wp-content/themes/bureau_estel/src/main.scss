@@ -21,3 +21,38 @@ header {
         }
     }
 }
+
+article {
+    &#le-bureau-destel {
+        padding: 3em;
+        text-align: center;
+        background-color: $primary_color;
+        color: $color_of_primary;
+        header {
+            h2 {
+                font-size: 2em;
+                font-weight: bold;
+                padding: 3em;
+            }
+        }
+        ul {
+            list-style-type: none;
+        }
+    }
+    &#les-services {
+        padding: 3em;
+        text-align: center;
+        background-color: $secondary_color;
+        color: $color_of_secondary;
+        header {
+            h2 {
+                font-size: 2em;
+                font-weight: bold;
+                padding: 3em;
+            }
+        }
+        ul {
+            list-style-type: none;
+        }
+    }
+}

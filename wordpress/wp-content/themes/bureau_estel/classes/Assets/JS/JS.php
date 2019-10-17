@@ -10,8 +10,10 @@
      private static $jsDir = "/assets/js/";
 
      public static function enqueue() {
-         $jsDir = self::getDocumentRoot() . self::$jsDir;
+        $jsDir = self::getDocumentRoot() . self::$jsDir;
+        wp_register_script("chunk", $jsDir . "app.chunk.js", [], "1.0.0", false);
         wp_register_script("app", $jsDir . "app.js", [], "1.0.0", false);
+        wp_enqueue_script("chunk");
         wp_enqueue_script("app");
      }
  }

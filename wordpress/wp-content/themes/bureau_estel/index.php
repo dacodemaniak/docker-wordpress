@@ -7,19 +7,22 @@
 */
 ?>
 <?php get_header(); ?>
-<main class="row">
-  <section class="content-area content-thin">
+<main>
+  <section class="row">
   <?php if ( have_posts() ) {
-     while ( have_posts() ) : the_post(); 
-      var_dump(the_post());
+    $posts = get_posts();
+
+     foreach($posts as $post) {
+      setup_postdata($post);
      ?>
-      <article class="col-12" id="<?php  ?>">
+      <article class="col-12" id="<?php  echo $post->post_name; ?>">
         <header>
           <h2><?php the_title(); ?></h2>
         </header>
         <?php the_content(); ?>
       </article>
-  <?php endwhile; } else { ?>
+  <?php } 
+    } else { ?>
       <article>
         <p>Sorry, no posts were found!</p>
       </article>
