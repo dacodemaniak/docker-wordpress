@@ -9703,4 +9703,26 @@ article#les-services ul {
   list-style-type: none;
 }
 
+.parallax {
+  width: 100%;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9;
+}
+.parallax p {
+  font-size: 1.5em;
+  position: relative;
+  bottom: 0;
+  height: 5em;
+  line-height: 5em;
+  vertical-align: middle;
+  width: inherit;
+  text-align: center;
+  background-color: rgba(231, 231, 231, 0.5);
+  z-index: 10;
+  color: #181818;
+}
+
 /*# sourceMappingURL=custom.css.map*/
