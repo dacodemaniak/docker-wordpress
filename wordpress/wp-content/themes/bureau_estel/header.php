@@ -46,8 +46,6 @@ $bootstrapMenu = new BootstrapMenu("sticky-top-menu");
       </button>
 
       <div class="collapse navbar-collapse" id="main-nav-bar">
-        <ul class="navbar-nav mr-auto">
           <?php wp_nav_menu( $bootstrapMenu->getOptions() ); ?>
-        </ul>
       </div>
     </nav>

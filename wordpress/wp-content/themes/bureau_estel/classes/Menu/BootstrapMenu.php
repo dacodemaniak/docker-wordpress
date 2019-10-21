@@ -16,7 +16,7 @@
 
          $this->options["menu_class"] = "navbar-nav mr-auto";
 
-         $this->options["items_wrap"] = '<ul class="\"%2$s\"">%3$s</ul>';
+         $this->options["items_wrap"] = '<ul id="%1$s" class="%2$s">%3$s</ul>';
 
          $this->options["walker"] = new BootstrapMenuWalker();
      }

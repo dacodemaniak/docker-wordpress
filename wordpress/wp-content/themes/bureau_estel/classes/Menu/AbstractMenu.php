@@ -18,7 +18,7 @@ abstract class AbstractMenu {
         "menu" => null,
         "menu_class" => null,
         "menu_id" => null,
-        "echo" => null,
+        "echo" => true,
         "fallback_cb" => null,
         "before" => null,
         "after" => null,

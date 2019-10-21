@@ -11,9 +11,7 @@
  class BootstrapMenuWalker extends Walker_Nav_Menu {
     private static $_INDENT_ = "\t";
 
-    public function start_lvl(&$output, $depth = 0, $args= []) {
-        echo "Start a level";
-    }
+    public function start_lvl(&$output, $depth = 0, $args= []) {}
     
     public function start_el(&$output, $item, $depth = 0, $args = [], $id = 0) {
 
@@ -61,10 +59,14 @@
 
         $output .= apply_filters( "walker_nav_menu_start_el", $item_output, $item, $depth, $args );
 
-        echo $output;
+        //echo $output;
     }
 
-    public function end_el(&$output, $item, $depth = 0, $args = []) {}
+    public function end_el(&$output, $item, $depth = 0, $args = []) {
+        //return $output;
+    }
 
-    public function end_lvl(&$output, $depth = 0, $args = []) {}
+    public function end_lvl(&$output, $depth = 0, $args = []) {
+        //return $output;
+    }
  }
