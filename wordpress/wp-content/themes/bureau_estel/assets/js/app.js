@@ -167,20 +167,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "App", function() { return App; });
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _main_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./main.scss */ "./src/main.scss");
-/* harmony import */ var _main_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_main_scss__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _parallax_parallax_module__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./parallax/parallax-module */ "./src/parallax/parallax-module.ts");
+/* harmony import */ var _main_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./main.scss */ "./src/main.scss");
+/* harmony import */ var _main_scss__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_main_scss__WEBPACK_IMPORTED_MODULE_2__);
+
+
 /**
  * @name app.ts
  * @author IDea Factory
  * @version 1.0.0
  * @abstract Entry point for app loading
  */
-
 // Imports main.scss
 
 class App {
     constructor() {
         console.log('App works after document is ready !');
+        const parallaxModule = new _parallax_parallax_module__WEBPACK_IMPORTED_MODULE_1__["ParallaxModule"]('.js-parallax');
     }
 }
 jquery__WEBPACK_IMPORTED_MODULE_0__(document).ready(() => {
@@ -198,6 +201,29 @@ jquery__WEBPACK_IMPORTED_MODULE_0__(document).ready(() => {
 /***/ (function(module, exports, __webpack_require__) {
 
 // extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ "./src/parallax/parallax-module.ts":
+/*!*****************************************!*\
+  !*** ./src/parallax/parallax-module.ts ***!
+  \*****************************************/
+/*! exports provided: ParallaxModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ParallaxModule", function() { return ParallaxModule; });
+/* harmony import */ var backpax__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! backpax */ "./node_modules/backpax/lib/index.js");
+/* harmony import */ var backpax__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(backpax__WEBPACK_IMPORTED_MODULE_0__);
+
+class ParallaxModule {
+    constructor(cssClass) {
+        new backpax__WEBPACK_IMPORTED_MODULE_0___default.a(cssClass);
+        console.log('Parallax module is ready');
+    }
+}
+
 
 /***/ })
 
