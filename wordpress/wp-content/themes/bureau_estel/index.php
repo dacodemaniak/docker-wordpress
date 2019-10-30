@@ -7,6 +7,10 @@
 */
 ?>
 <?php get_header(); ?>
+
+<!-- Paralax background image -->
+<?php get_template_part( 'theme_parts/paralax' ); ?>
+
 <main>
   <section class="row">
   <?php if ( have_posts() ) {

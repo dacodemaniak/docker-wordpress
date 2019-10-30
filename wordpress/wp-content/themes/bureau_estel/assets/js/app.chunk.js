@@ -1,5 +1,230 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["vendors~main"],{
 
+/***/ "./node_modules/backpax/lib/index.js":
+/*!*******************************************!*\
+  !*** ./node_modules/backpax/lib/index.js ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _util = __webpack_require__(/*! ./util */ "./node_modules/backpax/lib/util.js");
+
+var defaults = {
+    speed: "auto"
+};
+var Backpax = /** @class */function () {
+    function Backpax(selector, option) {
+        if (option === void 0) {
+            option = {};
+        }
+        if (selector instanceof NodeList) {
+            this.elements = selector;
+        } else {
+            this.elements = document.querySelectorAll(selector);
+        }
+        this.options = Object.assign({}, defaults, option);
+        this.move = 0;
+        this.setup();
+        if (window.requestAnimationFrame) {
+            requestAnimationFrame(this.run.bind(this));
+        } else {
+            setInterval(this.run.bind(this), 1000 / 60);
+        }
+        // window.addEventListener('resize', debounce(() => {
+        //   [].forEach.call(this.elements, (element: HTMLElement) => {
+        //     const { id } = element.dataset;
+        //     if (id) {
+        //       const insert = document.getElementById(id);
+        //       if (insert) {
+        //         this.setBestImg(element, insert);
+        //       }
+        //     }
+        //   });
+        // }, 100));
+    }
+    Backpax.prototype.setBestImg = function (element, insert) {
+        var width = window.innerWidth;
+        var img = element.dataset.img;
+        var backgroundImage = img;
+        var points = Object.keys(element.dataset).reduce(function (ac, key) {
+            if (/img-\d*/.test(key)) {
+                var match = key.match(/img-(\d*)/);
+                if (match && match[1]) {
+                    var point_1 = parseInt(match[1], 10);
+                    ac.push({
+                        point: point_1,
+                        src: element.dataset[key]
+                    });
+                }
+            }
+            return ac;
+        }, []);
+        points.sort(function (pointA, pointB) {
+            if (pointA.point < pointB.point) {
+                return -1;
+            }
+            return 1;
+        });
+        var point = points.find(function (p) {
+            if (width < p.point) {
+                return true;
+            }
+            return false;
+        });
+        if (point) {
+            backgroundImage = point.src;
+        }
+        insert.style.backgroundImage = "url(" + backgroundImage + ")";
+        this.setImgRatio(element, backgroundImage);
+    };
+    Backpax.prototype.setup = function () {
+        var _this = this;
+        [].forEach.call(this.elements, function (element) {
+            element.style.position = 'relative';
+            element.style.overflow = 'hidden';
+            var id = (0, _util.getRandomId)();
+            element.dataset.id = id;
+            var insert = document.createElement('div');
+            element.insertBefore(insert, null);
+            _this.setBestImg(element, insert);
+            insert.id = id;
+            insert.style.position = 'absolute';
+            insert.style.top = '0';
+            insert.style.left = '0';
+            insert.style.width = '100%';
+            insert.style.height = '100vh';
+            insert.style.backgroundRepeat = 'no-repeat';
+            insert.style.backgroundPosition = 'bottom center';
+            insert.style.backgroundSize = 'cover';
+            insert.style.transformStyle = 'preserve-3d';
+            insert.style.backfaceVisibility = 'hidden';
+            insert.style.willChange = 'transform';
+        });
+    };
+    Backpax.prototype.setImgRatio = function (element, image) {
+        var img = new Image();
+        img.onload = function () {
+            var ratio = img.width / img.height;
+            element.dataset.ratio = "" + ratio;
+            var id = element.dataset.id;
+            var insert = document.getElementById(id);
+            if (insert) {
+                insert.style.height = window.innerWidth / ratio + "px";
+            }
+        };
+        img.src = image;
+    };
+    Backpax.prototype.run = function () {
+        var _this = this;
+        var top = (0, _util.getScrollTop)();
+        [].forEach.call(this.elements, function (element) {
+            var id = element.dataset.id;
+            var insert = document.getElementById(id);
+            var elementOffset = (0, _util.getOffset)(element);
+            if (!insert) {
+                return;
+            }
+            if (!elementOffset) {
+                return;
+            }
+            var offset = elementOffset.top;
+            var ratio = parseFloat(element.dataset.ratio);
+            var windowHeight = window.innerHeight;
+            var elementHeight = element.offsetHeight;
+            var insertHeight = insert.offsetHeight;
+            if (top + windowHeight < offset) {
+                return;
+            }
+            var move = top + windowHeight - offset;
+            var bottom = elementHeight - insertHeight;
+            var speed = _this.options.speed;
+            if (speed === 'auto') {
+                if (ratio) {
+                    speed = (insertHeight - elementHeight) / (windowHeight + elementHeight / 2);
+                } else {
+                    return;
+                }
+            }
+            if (element.dataset.speed) {
+                speed = parseInt(element.dataset.speed, 10);
+            }
+            var final = bottom + move * speed;
+            if (move !== _this.move) {
+                insert.style.transform = "translate3d(0px, " + Math.round(final) + "px, 0px)";
+            }
+            _this.move = move;
+        });
+        if (window.requestAnimationFrame) {
+            requestAnimationFrame(this.run.bind(this));
+        }
+    };
+    return Backpax;
+}();
+exports.default = Backpax;
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/backpax/lib/util.js":
+/*!******************************************!*\
+  !*** ./node_modules/backpax/lib/util.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var getRandomId = exports.getRandomId = function getRandomId() {
+    return (Date.now().toString(36) + Math.random().toString(36).substr(2, 5)).toUpperCase();
+};
+var getScrollTop = exports.getScrollTop = function getScrollTop() {
+    return window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+};
+var getScrollLeft = exports.getScrollLeft = function getScrollLeft() {
+    return window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft || 0;
+};
+var getOffset = exports.getOffset = function getOffset(el) {
+    var rect = el.getBoundingClientRect();
+    return {
+        top: rect.top + getScrollTop(),
+        left: rect.left + getScrollLeft()
+    };
+};
+var debounce = exports.debounce = function debounce(func, wait, immediate) {
+    if (immediate === void 0) {
+        immediate = false;
+    }
+    var timeout;
+    return function () {
+        var later = function later() {
+            timeout = undefined;
+            if (!immediate) {
+                func();
+            }
+        };
+        var callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) {
+            func();
+        }
+    };
+};
+//# sourceMappingURL=util.js.map
+
+/***/ }),
+
 /***/ "./node_modules/jquery/dist/jquery.js":
 /*!********************************************!*\
   !*** ./node_modules/jquery/dist/jquery.js ***!
