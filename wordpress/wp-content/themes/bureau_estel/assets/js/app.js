@@ -165,12 +165,19 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "App", function() { return App; });
-/* harmony import */ var _contact_form_contact_form__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./contact-form/contact-form */ "./src/contact-form/contact-form.ts");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _parallax_parallax_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./parallax/parallax-module */ "./src/parallax/parallax-module.ts");
-/* harmony import */ var _main_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./main.scss */ "./src/main.scss");
-/* harmony import */ var _main_scss__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_main_scss__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _utilities_sticky_menu__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utilities/sticky-menu */ "./src/utilities/sticky-menu.ts");
+/* harmony import */ var _utilities_smooth_scroll__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utilities/smooth-scroll */ "./src/utilities/smooth-scroll.ts");
+/* harmony import */ var _contact_form_contact_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./contact-form/contact-form */ "./src/contact-form/contact-form.ts");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
+/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(bootstrap__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _parallax_parallax_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./parallax/parallax-module */ "./src/parallax/parallax-module.ts");
+/* harmony import */ var _main_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./main.scss */ "./src/main.scss");
+/* harmony import */ var _main_scss__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_main_scss__WEBPACK_IMPORTED_MODULE_6__);
+
+
+
 
 
 
@@ -185,12 +192,16 @@ __webpack_require__.r(__webpack_exports__);
 class App {
     constructor() {
         console.log('App works after document is ready !');
-        const parallaxModule = new _parallax_parallax_module__WEBPACK_IMPORTED_MODULE_2__["ParallaxModule"]('.js-parallax');
+        const parallaxModule = new _parallax_parallax_module__WEBPACK_IMPORTED_MODULE_5__["ParallaxModule"]('.js-parallax');
         // Contact form manager
-        const contactForm = new _contact_form_contact_form__WEBPACK_IMPORTED_MODULE_0__["ContactForm"]();
+        const contactForm = new _contact_form_contact_form__WEBPACK_IMPORTED_MODULE_2__["ContactForm"]();
+        // Enable smooth scroll to sections
+        const scrolling = new _utilities_smooth_scroll__WEBPACK_IMPORTED_MODULE_1__["SmoothScroll"]();
+        // Enable Sticky Top Menu
+        const stickyTopMenu = new _utilities_sticky_menu__WEBPACK_IMPORTED_MODULE_0__["StickyMenu"]();
     }
 }
-jquery__WEBPACK_IMPORTED_MODULE_1__(document).ready(() => {
+jquery__WEBPACK_IMPORTED_MODULE_3__(document).ready(() => {
     const app = new App();
 });
 
@@ -312,6 +323,72 @@ class ParallaxModule {
     constructor(cssClass) {
         new backpax__WEBPACK_IMPORTED_MODULE_0___default.a(cssClass);
         console.log('Parallax module is ready');
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/utilities/smooth-scroll.ts":
+/*!****************************************!*\
+  !*** ./src/utilities/smooth-scroll.ts ***!
+  \****************************************/
+/*! exports provided: SmoothScroll */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SmoothScroll", function() { return SmoothScroll; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+
+class SmoothScroll {
+    constructor() {
+        jquery__WEBPACK_IMPORTED_MODULE_0__('a').on('click', (event) => this._scrollTo(event));
+    }
+    _scrollTo(event) {
+        const link = jquery__WEBPACK_IMPORTED_MODULE_0__(event.target);
+        const hash = link.attr('href');
+        if (hash.substr(0, 1) === '#') {
+            event.preventDefault();
+            jquery__WEBPACK_IMPORTED_MODULE_0__('html, body').animate({
+                scrollTop: jquery__WEBPACK_IMPORTED_MODULE_0__(hash).offset().top
+            }, 800, () => {
+                window.location.hash = hash;
+            });
+        }
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/utilities/sticky-menu.ts":
+/*!**************************************!*\
+  !*** ./src/utilities/sticky-menu.ts ***!
+  \**************************************/
+/*! exports provided: StickyMenu */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StickyMenu", function() { return StickyMenu; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+
+class StickyMenu {
+    constructor() {
+        this.menu = document.getElementById('sticky-top-menu');
+        this.stickyTop = this.menu.offsetTop;
+        jquery__WEBPACK_IMPORTED_MODULE_0__(window).on('scroll', (event) => this._handler(event));
+    }
+    _handler(event) {
+        if (window.pageYOffset >= (this.stickyTop * 5)) {
+            this.menu.classList.add('sticky');
+        }
+        else {
+            this.menu.classList.remove('sticky');
+        }
     }
 }
 

@@ -13,5 +13,6 @@
          $cssDir = self::getDocumentRoot() . self::$cssDir;
 
         wp_enqueue_style( "custom", $cssDir . "custom.css");
+        wp_enqueue_style( "icomoon", $cssDir . "style.css");
      }
  }

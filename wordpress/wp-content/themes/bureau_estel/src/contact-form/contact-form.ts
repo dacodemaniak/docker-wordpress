@@ -25,7 +25,7 @@ export class ContactForm {
 
         [].forEach.call(
             document.querySelectorAll('.form-control'),
-            (element) => {
+            (element: any) => {
                 element.onblur = () => {
                     this._errorHandler(element)
                 }

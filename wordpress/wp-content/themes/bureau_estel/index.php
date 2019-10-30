@@ -9,12 +9,21 @@
 <?php get_header(); ?>
 
 <!-- Paralax background image -->
-<?php get_template_part( 'theme_parts/paralax' ); ?>
+<?php get_template_part( 'theme_parts/paralax' ); 
+// Get posts from the "accueil" category
+$queryArgs = [
+    "slug" => "accueil",
+    "posts_per_page" => -1,
+    "orderby" => "date",
+    "order" => "ASC"
+];
+$query = new WP_Query($queryArgs);
+?>
 
 <main>
   <section class="row">
-  <?php if ( have_posts() ) {
-    $posts = get_posts();
+  <?php if ( $query->have_posts() ) {
+    $posts = $query->get_posts();
 
      foreach($posts as $post) {
       setup_postdata($post);

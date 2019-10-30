@@ -39,7 +39,7 @@ $bootstrapMenu = new BootstrapMenu("sticky-top-menu");
       </h1>
     </header>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="row navbar navbar-expand-lg navbar-light bg-light" id="sticky-top-menu">
       <!-- Just toggler button -->
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav-bar" aria-controls="main-nav-bar" aria-expanded="false" aria-label="Basculer le menu">
         <span class="navbar-toggler-icon"></span>

@@ -9674,16 +9674,17 @@ header.row h1 {
   font-weight: bold;
 }
 
+article header h2 {
+  font-size: 2em;
+  font-weight: bold;
+  padding-top: 3em;
+  padding-bottom: 1em;
+}
 article#le-bureau-destel {
   padding: 3em;
   text-align: center;
   background-color: #77bec6;
   color: white;
-}
-article#le-bureau-destel header h2 {
-  font-size: 2em;
-  font-weight: bold;
-  padding: 3em;
 }
 article#le-bureau-destel ul {
   list-style-type: none;
@@ -9694,13 +9695,37 @@ article#les-services {
   background-color: #e7e7e7;
   color: #181818;
 }
-article#les-services header h2 {
+article#les-services header h3 {
   font-size: 2em;
   font-weight: bold;
-  padding: 3em;
+  padding-top: 3em;
 }
 article#les-services ul {
   list-style-type: none;
+  padding: 0;
+}
+article#les-services .rounded-badge {
+  display: block;
+  border-radius: 20em;
+  border-color: white;
+  color: white;
+  height: 5em;
+  width: 5em;
+  line-height: 1.8em;
+  vertical-align: middle;
+  margin: 0 auto;
+  font-weight: bold;
+}
+@media screen and (min-width: 481px) {
+  article#les-services .rounded-badge {
+    display: none;
+  }
+}
+article#les-services .rounded-badge.ga, article#les-services .rounded-badge.gp {
+  background-color: #77bec6;
+}
+article#les-services .rounded-badge.gc, article#les-services .rounded-badge.ge {
+  background-color: #9b9b9b;
 }
 article#tarifs {
   padding: 3em;
@@ -9721,15 +9746,15 @@ article#tarifs div.bloc-tarif div.inner {
   padding: 2em;
   background-color: #77bec6;
   color: white;
-  font-size: 1.8em;
+  font-size: 1.3em;
   font-weight: bold;
-  height: 10em;
+  min-height: 10em;
+  height: auto;
 }
 article#tarifs div.bloc-tarif div.inner p span {
   font-size: 0.7em;
 }
 article#horaires {
-  padding: 3em;
   text-align: center;
   background-color: white;
   color: #181818;
@@ -9739,6 +9764,17 @@ article#horaires header h2 {
   font-weight: bold;
   padding: 3em;
   color: #77bec6;
+}
+article#contact {
+  padding: 3em;
+  text-align: center;
+  background-color: #e7e7e7;
+  color: #181818;
+  margin-bottom: 1em;
+}
+article#contact a {
+  color: #181818;
+  text-decoration: none;
 }
 
 .parallax {
@@ -9770,6 +9806,45 @@ form div.error {
   color: #d2504d;
   font-size: 0.8em;
   padding-bottom: 0.5em;
+}
+
+nav.sticky {
+  position: fixed;
+  z-index: 10;
+  width: 100%;
+}
+@media screen and (max-width: 480px) {
+  nav.sticky {
+    top: 0;
+  }
+}
+@media screen and (min-width: 481px) {
+  nav.sticky {
+    top: 2em;
+  }
+}
+
+footer.sticky {
+  background-color: #9b9b9b;
+  color: #181818;
+}
+@media screen and (max-width: 480px) {
+  footer.sticky {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+  footer.sticky ul {
+    padding-top: 1em;
+  }
+  footer.sticky ul li {
+    cursor: pointer;
+  }
+  footer.sticky ul li a {
+    color: #181818;
+    font-size: 2em;
+    text-decoration: none;
+  }
 }
 
 /*# sourceMappingURL=custom.css.map*/
