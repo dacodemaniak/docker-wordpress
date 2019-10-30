@@ -165,11 +165,13 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "App", function() { return App; });
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _parallax_parallax_module__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./parallax/parallax-module */ "./src/parallax/parallax-module.ts");
-/* harmony import */ var _main_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./main.scss */ "./src/main.scss");
-/* harmony import */ var _main_scss__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_main_scss__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _contact_form_contact_form__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./contact-form/contact-form */ "./src/contact-form/contact-form.ts");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _parallax_parallax_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./parallax/parallax-module */ "./src/parallax/parallax-module.ts");
+/* harmony import */ var _main_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./main.scss */ "./src/main.scss");
+/* harmony import */ var _main_scss__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_main_scss__WEBPACK_IMPORTED_MODULE_3__);
+
 
 
 /**
@@ -183,12 +185,101 @@ __webpack_require__.r(__webpack_exports__);
 class App {
     constructor() {
         console.log('App works after document is ready !');
-        const parallaxModule = new _parallax_parallax_module__WEBPACK_IMPORTED_MODULE_1__["ParallaxModule"]('.js-parallax');
+        const parallaxModule = new _parallax_parallax_module__WEBPACK_IMPORTED_MODULE_2__["ParallaxModule"]('.js-parallax');
+        // Contact form manager
+        const contactForm = new _contact_form_contact_form__WEBPACK_IMPORTED_MODULE_0__["ContactForm"]();
     }
 }
-jquery__WEBPACK_IMPORTED_MODULE_0__(document).ready(() => {
+jquery__WEBPACK_IMPORTED_MODULE_1__(document).ready(() => {
     const app = new App();
 });
+
+
+/***/ }),
+
+/***/ "./src/contact-form/contact-form.ts":
+/*!******************************************!*\
+  !*** ./src/contact-form/contact-form.ts ***!
+  \******************************************/
+/*! exports provided: ContactForm */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ContactForm", function() { return ContactForm; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+
+class ContactForm {
+    constructor() {
+        this.requiredFields = (new Map())
+            .set('your-name', jquery__WEBPACK_IMPORTED_MODULE_0__('#name'))
+            .set('your-email', jquery__WEBPACK_IMPORTED_MODULE_0__('#email'));
+        this.form = jquery__WEBPACK_IMPORTED_MODULE_0__('form.wpcf7-form');
+        this.button = jquery__WEBPACK_IMPORTED_MODULE_0__('#send');
+        this._setListeners();
+    }
+    _setListeners() {
+        this.form.on('keyup', (event) => this._checkForm(event));
+        [].forEach.call(document.querySelectorAll('.form-control'), (element) => {
+            element.onblur = () => {
+                this._errorHandler(element);
+            };
+            element.onfocus = () => {
+                this._resetHandler(element);
+            };
+        });
+    }
+    _checkForm(event) {
+        let isFormValid = true;
+        this.requiredFields.forEach((element, key) => {
+            if (element.val().toString().trim().length === 0) {
+                isFormValid = false;
+            }
+            else {
+                if (key === 'your-email') {
+                    isFormValid = this._emailPattern(element.val().toString().trim());
+                }
+            }
+        });
+        if (isFormValid) {
+            this.button.removeAttr('disabled');
+        }
+        else {
+            this.button.attr('disabled', 'disabled');
+        }
+    }
+    _errorHandler(element) {
+        const jqueryElement = jquery__WEBPACK_IMPORTED_MODULE_0__(element);
+        let errorDiv;
+        let specialDiv;
+        if (jqueryElement.val().toString().trim().length === 0) {
+            specialDiv = jquery__WEBPACK_IMPORTED_MODULE_0__('div.' + jqueryElement.attr('id') + '-empty');
+            specialDiv.removeClass('hidden');
+            errorDiv = jquery__WEBPACK_IMPORTED_MODULE_0__('div.' + jqueryElement.attr('id') + '-has-error');
+            errorDiv.removeClass('hidden');
+        }
+        else {
+            if (jqueryElement.attr('id') === 'email') {
+                if (!this._emailPattern(jqueryElement.val().toString().trim())) {
+                    errorDiv = jquery__WEBPACK_IMPORTED_MODULE_0__('div.' + jqueryElement.attr('id') + '-has-error');
+                    errorDiv.removeClass('hidden');
+                    specialDiv = jquery__WEBPACK_IMPORTED_MODULE_0__('div.' + jqueryElement.attr('id') + '-invalid');
+                    specialDiv.removeClass('hidden');
+                }
+            }
+        }
+    }
+    _resetHandler(element) {
+        const jqueryElement = jquery__WEBPACK_IMPORTED_MODULE_0__(element);
+        const errorDiv = jquery__WEBPACK_IMPORTED_MODULE_0__('div.' + jqueryElement.attr('id') + '-has-error');
+        errorDiv.addClass('hidden');
+    }
+    _emailPattern(value) {
+        let regExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return regExp.test(value);
+    }
+}
 
 
 /***/ }),

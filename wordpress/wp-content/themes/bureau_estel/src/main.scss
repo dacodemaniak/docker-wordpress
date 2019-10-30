@@ -55,6 +55,56 @@ article {
             list-style-type: none;
         }
     }
+    &#tarifs {
+        padding: 3em;
+        text-align: center;
+        background-color: $color_of_primary;
+        color: $color_of_tertiary;
+        header {
+            h2 {
+                font-size: 2em;
+                font-weight: bold;
+                padding: 3em;
+                color: $primary_color;
+            }
+        }
+        div {
+            &.bloc-tarif {
+                
+                background-color: $color_of_primary;
+
+                div {
+                    &.inner {
+                        padding: 2em;
+                        background-color: $primary_color;
+                        color: $color_of_primary;
+                        font-size: 1.8em;
+                        font-weight: bold;
+                        height: 10em;
+                        p {
+                            span {
+                                font-size: .7em;
+                            }
+                        }
+                    }
+                }
+            }
+        }       
+    }
+    &#horaires {
+        padding: 3em;
+        text-align: center;
+        background-color: $color_of_primary;
+        color: $color_of_tertiary;
+        header {
+            h2 {
+                font-size: 2em;
+                font-weight: bold;
+                padding: 3em;
+                color: $primary_color;
+            }
+        }        
+    }
 }
 
 .parallax {
@@ -76,5 +126,19 @@ article {
         background-color: rgba($secondary_color, .5);
         z-index: 10;
         color: $color_of_secondary;
+    }
+}
+
+// Form error handling
+form {
+    div {
+        &.hidden {
+            display: none;
+        }
+        &.error {
+            color: $danger_color;
+            font-size: .8em;
+            padding-bottom: .5em;
+        }
     }
 }

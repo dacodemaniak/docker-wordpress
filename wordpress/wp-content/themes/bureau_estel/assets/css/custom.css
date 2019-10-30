@@ -9702,6 +9702,44 @@ article#les-services header h2 {
 article#les-services ul {
   list-style-type: none;
 }
+article#tarifs {
+  padding: 3em;
+  text-align: center;
+  background-color: white;
+  color: #181818;
+}
+article#tarifs header h2 {
+  font-size: 2em;
+  font-weight: bold;
+  padding: 3em;
+  color: #77bec6;
+}
+article#tarifs div.bloc-tarif {
+  background-color: white;
+}
+article#tarifs div.bloc-tarif div.inner {
+  padding: 2em;
+  background-color: #77bec6;
+  color: white;
+  font-size: 1.8em;
+  font-weight: bold;
+  height: 10em;
+}
+article#tarifs div.bloc-tarif div.inner p span {
+  font-size: 0.7em;
+}
+article#horaires {
+  padding: 3em;
+  text-align: center;
+  background-color: white;
+  color: #181818;
+}
+article#horaires header h2 {
+  font-size: 2em;
+  font-weight: bold;
+  padding: 3em;
+  color: #77bec6;
+}
 
 .parallax {
   width: 100%;
@@ -9723,6 +9761,15 @@ article#les-services ul {
   background-color: rgba(231, 231, 231, 0.5);
   z-index: 10;
   color: #181818;
+}
+
+form div.hidden {
+  display: none;
+}
+form div.error {
+  color: #d2504d;
+  font-size: 0.8em;
+  padding-bottom: 0.5em;
 }
 
 /*# sourceMappingURL=custom.css.map*/

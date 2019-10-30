@@ -1,3 +1,4 @@
+import { ContactForm } from './contact-form/contact-form';
 import { isMainThread } from "worker_threads";
 import * as $ from 'jquery';
 import { ParallaxModule } from './parallax/parallax-module';
@@ -16,6 +17,9 @@ export class App {
     public constructor() {
         console.log('App works after document is ready !');
         const parallaxModule = new ParallaxModule('.js-parallax');
+
+        // Contact form manager
+        const contactForm: ContactForm = new ContactForm();
     }
 }
 

@@ -7,7 +7,7 @@
 */
 
 // Get the background image from Wordpress
-$imageDetail = wp_get_attachment_image_src(29, [1920, 1280]);
+$imageDetail = wp_get_attachment_image_src(16, [1920, 1280]);
 $image = $imageDetail[0];
 //var_dump($image);
 ?>
