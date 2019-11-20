@@ -191,7 +191,7 @@ nav {
             top: 0;
         }
         @media screen and (min-width: 481px) {
-            top: 2em;
+            top: 0;
         }
     }
 }
@@ -201,23 +201,24 @@ footer {
         background-color: darken($secondary_color, 30%);
         color: $default_font_color;
 
+
+        ul {
+            padding-top: 1em;
+            li {
+                cursor: pointer;
+                a {
+                    color: $default_font_color;
+                    font-size: 2em;
+                    text-decoration: none;
+                    
+                }
+            }
+        }
+
         @media screen and (max-width: 480px) {
             position: fixed;
             bottom: 0;
             width: 100%;
-
-            ul {
-                padding-top: 1em;
-                li {
-                    cursor: pointer;
-                    a {
-                        color: $default_font_color;
-                        font-size: 2em;
-                        text-decoration: none;
-                        
-                    }
-                }
-            }
 
         }
     }
