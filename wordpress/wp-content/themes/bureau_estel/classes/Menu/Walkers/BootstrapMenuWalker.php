@@ -37,7 +37,8 @@
         $atts["title"]  = ! empty( $item->attr_title ) ? $item->attr_title : "";
         $atts["target"] = ! empty( $item->target )     ? $item->target     : "";
         $atts["rel"]    = ! empty( $item->xfn )        ? $item->xfn        : "";
-
+        $atts["data-toggle"] = "collapse";
+        $atts["data-target"] = ".navbar-collapse.show";
         $atts["href"]   = ! empty( $item->url ) ? $item->url : "";
 
         $atts = apply_filters( 'nav_menu_link_attributes', $atts, $item, $args );

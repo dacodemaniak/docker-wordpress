@@ -1,5 +1,9 @@
+import { StickyMenu } from './utilities/sticky-menu';
+import { SmoothScroll } from './utilities/smooth-scroll';
+import { ContactForm } from './contact-form/contact-form';
 import { isMainThread } from "worker_threads";
 import * as $ from 'jquery';
+import 'bootstrap';
 import { ParallaxModule } from './parallax/parallax-module';
 /**
  * @name app.ts
@@ -16,6 +20,15 @@ export class App {
     public constructor() {
         console.log('App works after document is ready !');
         const parallaxModule = new ParallaxModule('.js-parallax');
+
+        // Contact form manager
+        const contactForm: ContactForm = new ContactForm();
+
+        // Enable smooth scroll to sections
+        const scrolling: SmoothScroll = new SmoothScroll();
+
+        // Enable Sticky Top Menu
+        const stickyTopMenu: StickyMenu = new StickyMenu();
     }
 }
 

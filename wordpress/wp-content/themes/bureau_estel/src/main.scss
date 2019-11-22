@@ -13,28 +13,35 @@ body {
 header {
     &.row {
         h1 {
-            line-height: 3em;
+            line-height: 9em;
             vertical-align: middle;
             padding-left: 3em;
             font-size: 1.375em;
             font-weight: bold;
         }
+        .logo {
+            margin: 0 auto;
+            padding-top: 1em;
+        }
     }
 }
 
 article {
+    header {
+        h2 {
+            font-size: 2em;
+            font-weight: bold;
+            padding-top: 3em;
+            padding-bottom: 1em;
+        }
+    }
+
     &#le-bureau-destel {
         padding: 3em;
         text-align: center;
         background-color: $primary_color;
         color: $color_of_primary;
-        header {
-            h2 {
-                font-size: 2em;
-                font-weight: bold;
-                padding: 3em;
-            }
-        }
+
         ul {
             list-style-type: none;
         }
@@ -45,15 +52,100 @@ article {
         background-color: $secondary_color;
         color: $color_of_secondary;
         header {
+            h3 {
+                font-size: 2em;
+                font-weight: bold;
+                padding-top: 3em;
+            }
+
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .rounded-badge {
+            @media screen and (min-width: 481px) {
+                display: none;
+            }
+            display: block;
+            border-radius: 20em;
+            border-color: $color_of_primary;
+            color: $color_of_primary;
+            height: 5em;
+            width: 5em;
+            line-height: 1.8em;
+            vertical-align: middle;
+            margin: 0 auto;
+            font-weight: bold;
+            &.ga, &.gp {
+                background-color: $primary_color;
+            }
+            &.gc, &.ge {
+                background-color: darken($secondary_color, 30%);
+            }
+        }
+    }
+    &#tarifs {
+        padding: 3em;
+        text-align: center;
+        background-color: $color_of_primary;
+        color: $color_of_tertiary;
+        header {
             h2 {
                 font-size: 2em;
                 font-weight: bold;
                 padding: 3em;
+                color: $primary_color;
             }
         }
-        ul {
-            list-style-type: none;
-        }
+        div {
+            &.bloc-tarif {
+                
+                background-color: $color_of_primary;
+
+                div {
+                    &.inner {
+                        padding: 2em;
+                        background-color: $primary_color;
+                        color: $color_of_primary;
+                        font-size: 1.3em;
+                        font-weight: bold;
+                        min-height: 10em;
+                        height: auto;
+                        p {
+                            span {
+                                font-size: .7em;
+                            }
+                        }
+                    }
+                }
+            }
+        }       
+    }
+    &#horaires {
+        //padding: 3em;
+        text-align: center;
+        background-color: $color_of_primary;
+        color: $color_of_tertiary;
+        header {
+            h2 {
+                font-size: 2em;
+                font-weight: bold;
+                padding: 3em;
+                color: $primary_color;
+            }
+        }        
+    }
+    &#contact {
+        padding: 3em;
+        text-align: center;
+        background-color: $secondary_color;
+        color: $color_of_secondary;
+        margin-bottom: 1em;
+        a {
+            color: $color_of_secondary;
+            text-decoration: none;
+        }       
     }
 }
 
@@ -76,5 +168,62 @@ article {
         background-color: rgba($secondary_color, .5);
         z-index: 10;
         color: $color_of_secondary;
+    }
+}
+
+// Form error handling
+form {
+    div {
+        &.hidden {
+            display: none;
+        }
+        &.error {
+            color: $danger_color;
+            font-size: .8em;
+            padding-bottom: .5em;
+        }
+    }
+}
+
+// Sticky top menu
+nav {
+    &.sticky {
+        position: fixed;
+        z-index: 10;
+        width: 100%;
+        @media screen and (max-width: 480px) {
+            top: 0;
+        }
+        @media screen and (min-width: 481px) {
+            top: 0;
+        }
+    }
+}
+// Footer
+footer {
+    &.sticky {
+        background-color: darken($secondary_color, 30%);
+        color: $default_font_color;
+
+
+        ul {
+            padding-top: 1em;
+            li {
+                cursor: pointer;
+                a {
+                    color: $default_font_color;
+                    font-size: 2em;
+                    text-decoration: none;
+                    
+                }
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+
+        }
     }
 }
