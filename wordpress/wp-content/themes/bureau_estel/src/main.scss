@@ -13,11 +13,15 @@ body {
 header {
     &.row {
         h1 {
-            line-height: 3em;
+            line-height: 9em;
             vertical-align: middle;
             padding-left: 3em;
             font-size: 1.375em;
             font-weight: bold;
+        }
+        .logo {
+            margin: 0 auto;
+            padding-top: 1em;
         }
     }
 }
